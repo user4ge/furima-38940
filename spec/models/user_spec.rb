@@ -27,12 +27,12 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'emailは@を含まないと登録できない' do
         @user.email = @user.email.delete('@')
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが空では登録できない' do
         @user.password = ''
@@ -43,19 +43,19 @@ RSpec.describe User, type: :model do
         @user.password = Faker::Internet.password(min_length: 1, max_length: 5)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'Passwordが129文字以上では登録できない' do
         @user.password = Faker::Internet.password(min_length: 129)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
+        expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
       end
       it 'Passwordは半角英数字混合でないと登録できない' do
         @user.password = Faker::Internet.password(min_length: 6, special_characters: true)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'password_confirmationが空では登録できない' do
         @user.password_confirmation = ''
@@ -75,7 +75,7 @@ RSpec.describe User, type: :model do
       it 'last_nameが全角でないと登録できない' do
         @user.last_name = Faker::Name.last_name
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid")
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
       it 'first_nameが空では登録できない' do
         @user.first_name = ''
@@ -85,7 +85,7 @@ RSpec.describe User, type: :model do
       it 'first_nameが全角でないと登録できない' do
         @user.first_name = Faker::Name.first_name
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
       it 'ruby_last_nameが空では登録できない' do
         @user.ruby_last_name = ''
@@ -95,7 +95,7 @@ RSpec.describe User, type: :model do
       it 'ruby_last_nameがカタカナでないと登録できない' do
         @user.ruby_last_name = Gimei.last.hiragana
         @user.valid?
-        expect(@user.errors.full_messages).to include("Ruby last name is invalid")
+        expect(@user.errors.full_messages).to include('Ruby last name is invalid')
       end
       it 'ruby_first_nameが空では登録できない' do
         @user.ruby_first_name = ''
@@ -105,7 +105,7 @@ RSpec.describe User, type: :model do
       it 'ruby_first_nameがカタカナでないと登録できない' do
         @user.ruby_first_name = Gimei.last.hiragana
         @user.valid?
-        expect(@user.errors.full_messages).to include("Ruby first name is invalid")
+        expect(@user.errors.full_messages).to include('Ruby first name is invalid')
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = ''
