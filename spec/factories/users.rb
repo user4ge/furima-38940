@@ -3,7 +3,7 @@ FactoryBot.define do
     nickname              { Gimei.first.hiragana }
     email                 { Faker::Internet.free_email }
     # password: Default configuration is mix_case: true && special_characters: false
-    password              { Faker::Internet.password(min_length: 6) }
+    password              { Faker::Lorem.characters(number: 8, min_alpha: 1, min_numeric: 1) }
     password_confirmation { password }
     last_name             { Gimei.last.kanji }
     first_name            { Gimei.first.kanji }
