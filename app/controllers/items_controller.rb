@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, if: :use_auth?
+
   def index
   end
 
   def new
-    authenticate_user!
     @item = Item.new
   end
 
@@ -20,5 +21,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_cost_id, :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
+  end
+
+  def use_auth?
+    if action_name == 'new'
+      true
+    end
   end
 end
