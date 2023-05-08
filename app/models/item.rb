@@ -17,5 +17,5 @@ class Item < ApplicationRecord
   validates :shipping_cost_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true, format: { with: /\A[3-9]\d{2}|[1-9]\d{3,6}\z/ }
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 end
