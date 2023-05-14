@@ -7,7 +7,7 @@ class OrderShipping
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address
-    validates :phone_number, format: { with: /\A0\d{9,10}\z/, message: 'is invalid' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
     validates :user_id
     validates :item_id
   end
